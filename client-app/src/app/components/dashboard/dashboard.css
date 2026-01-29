@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  background: #f4f6f8;
+}
+
+.dashboard {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.project-title {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #222;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.stat h3 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.stat p {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.total h3 {
+  color: #007bff;
+}
+
+.completed h3 {
+  color: #28a745;
+}
+
+.overdue h3 {
+  color: #dc3545;
+}

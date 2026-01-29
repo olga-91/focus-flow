@@ -1,0 +1,37 @@
+@if (user) {
+  <div class="dropdown">
+    <img
+      src="https://i.pravatar.cc/40"
+      class="avatar"
+    />
+    <button class="dropbtn">{{ user.username }} ▾</button>
+
+    <div class="dropdown-content">
+      <a href="#" (click)="logout()">Logout</a>
+    </div>
+  </div>
+} @else {
+  <form class="form-row">
+    <input class="form-control-sm"
+           id="username"
+           type="text"
+           placeholder="Enter Username"
+           [(ngModel)]="userCredentials.username"
+           name="username">
+    <input class="form-control-sm"
+           id="password"
+           autocomplete="on"
+           type="password"
+           placeholder="Enter Password"
+           [(ngModel)]="userCredentials.password"
+           name="password">
+    <button class="btn btn-primary btn-sm ml-2" type="submit" (click)="login()">Login</button>
+  </form>
+}
+<div>
+<!--  <button class="btn btn-outline-info btn-sm" @if="user" (click)="logout()">Logout</button>-->
+<!--  <button class="btn btn-success btn-sm mt-2" @if="!user" (click)="create()">Sign up</button>-->
+</div>
+<div>
+<!--  <div @if="loginFailed" class="text-danger">Login failed</div>-->
+</div>

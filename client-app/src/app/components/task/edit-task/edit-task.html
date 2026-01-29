@@ -1,0 +1,82 @@
+<h2>Update Task</h2>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <label>Title</label>
+  <input
+    type="text"
+    name="title"
+    [(ngModel)]="flowTask.title"
+    required
+  />
+  <br />
+
+  <label>Description</label>
+  <input
+    type="text"
+    name="description"
+    [(ngModel)]="flowTask.description"
+  />
+  <br />
+
+  <label>Due Date</label>
+  <input
+    type="date"
+    name="dueDate"
+    [(ngModel)]="flowTask.dueDate"
+    [ngModel]="flowTask.dueDate | date: 'yyyy-MM-dd'"
+    required
+  />
+  <br />
+
+  @if (priorities){
+    <label>Priority</label>
+    <select id="option" name="priorityId"
+            [(ngModel)]="flowTask.priorityId"
+            required>
+      <option value="">-- Select priority --</option>
+      @for (priority of priorities; track priority.id){
+        <option value="{{priority.id}}">{{priority.name}}</option>
+      }
+    </select>
+  }
+
+  @if (statuses){
+    <label>Status</label>
+    <select id="option" name="statusId"
+            [(ngModel)]="flowTask.statusId"
+            required>
+      <option value="">-- Select status --</option>
+      @for (status of statuses; track status.id){
+        <option value="{{status.id}}">{{status.name}}</option>
+      }
+    </select>
+  }
+
+  @if (users){
+    <label>Assign to user</label>
+    <select id="option" name="assignedUserId"
+            [(ngModel)]="flowTask.assignedUserId"
+            >
+      <option [ngValue]=null>-- Select a user --</option>
+      @for (user of users; track user.id){
+        <option value="{{user.id}}">{{user.name}}</option>
+      }
+    </select>
+  }
+
+  @if (projects){
+    <label>Assign to project</label>
+    <select id="option" name="projectId"
+            [(ngModel)]="flowTask.projectId"
+    >
+      <option [ngValue]=null>-- Select a project --</option>
+      @for (project of projects; track project.id){
+        <option value="{{project.id}}">{{project.name}}</option>
+      }
+    </select>
+  }
+
+  <button type="submit" [disabled]="f.invalid">
+    Submit
+  </button>
+</form>

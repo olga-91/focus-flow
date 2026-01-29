@@ -1,0 +1,32 @@
+﻿version: '3.8'
+
+services:
+  focus-flow-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Pass1234!"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+
+  webapi:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    ports:
+      - "5174:5174"
+    depends_on:
+      - focus-flow-db
+  
+  client-app:
+    build:
+      context: ../client-app
+      dockerfile: Dockerfile
+    ports: 
+    - "4200:80"
+    
+      
+volumes:
+  sqlserverdata:

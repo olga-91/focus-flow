@@ -1,0 +1,62 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <table>
+    <thead>
+    <tr>
+      <th>Task</th>
+      <th>Project <br>
+        <input name="project" type="text" [(ngModel)]="filter.project" placeholder="Search by project" /></th>
+      <th>Status <br>
+        @if (statuses){
+          <select name="statusId"
+                  [(ngModel)]="filter.statusId">
+            <option [ngValue]="null">-- Search by status --</option>
+            @for (status of statuses; track status.id){
+              <option value="{{status.id}}">{{status.name}}</option>
+            }
+          </select>
+        }
+      <th>
+        Priority <br>
+        @if (priorities){
+          <select style="width: 50%"  name="priorityId"
+                  [(ngModel)]="filter.priorityId">
+            <option [ngValue]="null">-- Search by priority --</option>
+            @for (priority of priorities; track priority.id){
+              <option value="{{priority.id}}">{{priority.name}}</option>
+            }
+          </select>
+        }
+        <button type="submit">Apply</button>
+      <th>Assigned To</th>
+      <th>Due Date</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+      @for (flowTask of tasks; track flowTask.id){
+        <tr>
+          <td>{{flowTask.title}}</td>
+          <td>{{flowTask.projectName ?? '--'}}</td>
+          <td [ngClass]="{
+        'status-not-started': flowTask.statusId === 1,
+        'status-in-progress': flowTask.statusId == 2,
+        'status-completed': flowTask.statusId == 3
+        }">{{ flowTask.statusName }}</td>
+          <td [ngClass]="{
+        'priority-high': flowTask.priorityId === 1,
+        'priority-medium': flowTask.priorityId == 2,
+        'priority-low': flowTask.priorityId == 3
+        }">{{ flowTask.priorityName }}</td>
+
+        <td>{{flowTask.assignedUser}}</td>
+        <td>{{flowTask.dueDate | date: 'dd/MM/yyyy'}}</td>
+        <td>
+          <button routerLink="/task/{{flowTask.id}}">✎</button>
+          <button (click)="onDelete(flowTask.id!)">Delete</button>
+        </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</form>

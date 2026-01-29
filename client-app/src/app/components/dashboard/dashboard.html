@@ -1,0 +1,25 @@
+<div class="dashboard">
+  <h1>Dashboard</h1>
+
+  <div class="projects">
+    @for (statistic of statistics; track statistic.projectName){
+    <div class="project-card">
+      <div class="project-title">{{ statistic.projectName }}</div>
+      <div class="stats">
+        <div class="stat total">
+          <h3>{{statistic.totalTasks}}</h3>
+          <p>Total</p>
+        </div>
+        <div class="stat completed">
+          <h3>{{statistic.completedTasks}}</h3>
+          <p>Completed</p>
+        </div>
+        <div class="stat overdue">
+          <h3>{{statistic.overdueTasks}}</h3>
+          <p>Overdue</p>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

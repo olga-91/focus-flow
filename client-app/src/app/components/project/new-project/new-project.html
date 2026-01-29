@@ -1,0 +1,24 @@
+<h2>New Project</h2>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <input
+    type="text"
+    name="name"
+    [(ngModel)]="project.name"
+    required
+    placeholder="Project name"
+  />
+  <br />
+
+  <input
+    type="text"
+    name="description"
+    [(ngModel)]="project.description"
+    placeholder="Project Description"
+  />
+  <br />
+
+  <button type="submit" [disabled]="f.invalid">
+    Create project
+  </button>
+</form>

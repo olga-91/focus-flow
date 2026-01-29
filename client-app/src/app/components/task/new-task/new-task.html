@@ -1,0 +1,63 @@
+<h2>New Task</h2>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <input
+    type="text"
+    name="title"
+    [(ngModel)]="flowTask.title"
+    required
+    placeholder="Title"
+  />
+  <br />
+
+  <input
+    type="text"
+    name="description"
+    [(ngModel)]="flowTask.description"
+    placeholder="Description"
+  />
+  <br />
+
+  <input
+    type="date"
+    name="dueDate"
+    [(ngModel)]="flowTask.dueDate"
+    placeholder="Due Date"
+  />
+  <br />
+
+  @if (priorities){
+    <select id="option" name="priorityId"
+            [(ngModel)]="flowTask.priorityId"
+            required>
+      <option [ngValue]=null>-- Select priority --</option>
+      @for (priority of priorities; track priority.id){
+      <option value="{{priority.id}}">{{priority.name}}</option>
+      }
+    </select>
+  }
+
+  @if (statuses){
+    <select id="option" name="statusId"
+            [(ngModel)]="flowTask.statusId"
+            required>
+      <option [ngValue]=null>-- Select status --</option>
+      @for (status of statuses; track status.id){
+        <option value="{{status.id}}">{{status.name}}</option>
+      }
+    </select>
+  }
+
+  @if (users){
+    <select id="option" name="assignedUserId"
+            [(ngModel)]="flowTask.assignedUserId"
+            required>
+      <option [ngValue]=null>-- Assign a user --</option>
+      @for (user of users; track user.id){
+        <option value="{{user.id}}">{{user.name}}</option>
+      }
+    </select>
+  }
+
+  <button type="submit" [disabled]="f.invalid">Create Task</button>
+</form>

@@ -1,0 +1,37 @@
+<nav class="navbar">
+  <div class="nav-left">
+    <div class="brand">Focus Flow</div>
+
+    <a href="/">Home</a>
+    <a routerLink="/register-user">Register User</a>
+
+    @if (isAuthenticated){
+    <div class="dropdown">
+      <button class="dropbtn">
+        Projects ▾
+      </button>
+      <div class="dropdown-content">
+        <a routerLink="/new-project">New Project</a>
+        <a routerLink="/list-projects">List Projects</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn">
+        Tasks ▾
+      </button>
+      <div class="dropdown-content">
+        <a routerLink="/new-task">New Task</a>
+        <a routerLink="/list-tasks">List Tasks</a>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="nav-right">
+    <app-user-login></app-user-login>
+  </div>
+</nav>
+
+<app-toast></app-toast>
+<router-outlet/>

@@ -1,0 +1,42 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <input
+    type="text"
+    name="username"
+    [(ngModel)]="user.username"
+    required
+    placeholder="Username"
+  />
+  <br />
+
+  <input
+    type="email"
+    name="email"
+    [(ngModel)]="user.email"
+    required
+    email
+    placeholder="Email"
+  />
+  <br />
+
+  <input
+    type="text"
+    name="name"
+    [(ngModel)]="user.name"
+    required
+    placeholder="Name"
+  />
+  <br />
+
+  <input
+    type="password"
+    name="password"
+    [(ngModel)]="user.password"
+    required
+    placeholder="Password"
+  />
+  <br />
+
+  <button type="submit" [disabled]="f.invalid">
+    Create User
+  </button>
+</form>

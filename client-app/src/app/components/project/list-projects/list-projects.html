@@ -1,0 +1,22 @@
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    @for (project of projects; track project.id){
+      <tr>
+        <td>{{project.name}}</td>
+        <td>{{project.description ?? '--'}}</td>
+        <td>
+          <button routerLink="/project/{{project.id}}">✎</button>
+          <button (click)="onDelete(project.id!)">Delete</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
